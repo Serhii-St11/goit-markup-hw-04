@@ -1,5 +1,5 @@
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #fff;
   line-height: 1.5;
   letter-spacing: 0.02em;
@@ -61,22 +61,45 @@ img {
 /* ---header---- */
 .page-header {
   border-bottom: 1px solid #e7e9fc;
+  box-shadow: 0 1px 6px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 2px 1px 0 rgba(46, 47, 66, 0.08);
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: none;
 }
 
-.main-navigation {
+.header-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.header-nav-link::after {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #404bbf;
+  opacity: 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-nav-link:hover:after,
+.header-nav-link:focus:after,
+.header-nav-link.current::after {
+  opacity: 1;
+}
+
 .logo-heder {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 1.17;
@@ -90,29 +113,30 @@ img {
 }
 
 .logo-black {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #2e2f42;
 }
 
 .nav-list {
   display: flex;
   gap: 40px;
-  padding-top: 24px;
-  padding-bottom: 24px;
 }
 
-.main-navigation-item {
+.header-nav-link {
+  display: block;
+  position: relative;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #2e2f42;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding: 24px 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.main-navigation-item:focus,
-.main-navigation-item:hover {
+.header-nav-link:focus,
+.header-nav-link:hover,
+.header-nav-link.current {
   color: #404bbf;
 }
 
@@ -129,8 +153,8 @@ img {
   font-weight: 400;
   font-size: 16px;
   color: #434455;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding: 24px 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address-link:hover,
@@ -145,10 +169,19 @@ img {
 .hero-section {
   display: flex;
   background-color: #2e2f42;
+  max-width: 1440px;
   text-align: center;
   justify-content: center;
   padding: 188px 0;
   margin: auto;
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url(../images/people-office.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hero-container {
@@ -173,6 +206,7 @@ img {
   display: block;
   font-weight: 500;
   background-color: #4d5ae5;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 16px;
   cursor: pointer;
   line-height: 1.5;
@@ -188,7 +222,6 @@ img {
 .button:hover,
 .button:focus {
   background-color: #404bbf;
-  color: #fff;
 }
 /* ------//hero section------- */
 
@@ -204,6 +237,17 @@ img {
 
 .advantages-item {
   width: calc((100% - 72px) / 4);
+}
+
+.advantages-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
+  border: 1px solid #8e8f99;
+  border-radius: 4px;
+  background-color: #f4f4fd;
+  margin-bottom: 8px;
 }
 
 .advantages-section-title {
@@ -255,6 +299,8 @@ img {
 
 .team-container {
   padding: 32px 0;
+  box-shadow: 0 2px 1px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 1px 6px 0 rgba(46, 47, 66, 0.08);
 }
 
 .team-section-name {
@@ -271,10 +317,73 @@ img {
   font-size: 16px;
   color: #434455;
   text-align: center;
+  margin-bottom: 8px;
+}
+
+.social-container {
+  display: flex;
+  justify-content: center;
+}
+
+.team-social-list {
+  display: flex;
+  gap: 24px;
+}
+
+.team-social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #4d5ae5;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team-social-link:hover,
+.team-social-link:focus {
+  background-color: #404bbf;
 }
 /* -----//team-section------- */
 
 /* ----portfolio section----- */
+
+.portfolio-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #4d5ae5;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 40px;
+}
+
+.portfolio-item:hover .portfolio-overlay-text,
+.portfolio-item:focus .portfolio-overlay-text,
+.portfolio-item:hover .portfolio-container,
+.portfolio-item:focus .portfolio-container {
+  transform: translateY(0%);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 1px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 1px 6px 0 rgba(46, 47, 66, 0.08);
+}
+
 .portfolio-section {
   padding-top: 120px;
   padding-bottom: 120px;
@@ -328,7 +437,7 @@ img {
 }
 
 .logo-footer {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 1.17;
@@ -348,4 +457,46 @@ img {
 .logo-white {
   color: #f4f4fd;
 }
+
+.footer-container {
+  display: flex;
+  gap: 120px;
+  align-items: flex-start;
+}
+
+.footer-social-list {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.footer-social-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.footer-social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #4d5ae5;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-social-text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus {
+  background-color: #31d0aa;
+}
+
 /* ----//footer----- */
